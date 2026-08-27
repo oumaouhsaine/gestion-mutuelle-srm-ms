@@ -1,0 +1,184 @@
+/* Utilisateurs page layout & specific animations */
+
+.utilisateurs-container {
+  position: relative;
+}
+
+/* Modal wrapper & layout */
+.modal-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.2rem;
+}
+
+.modal-full-width {
+  margin-bottom: 1.2rem;
+}
+
+.form-label-with-spacing {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #475569;
+}
+
+/* Inputs with absolute-positioned FontAwesome icons */
+.input-icon-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon-wrapper i {
+  position: absolute;
+  left: 14px;
+  color: #94a3b8;
+  font-size: 1rem;
+  pointer-events: none;
+  transition: color 0.2s ease;
+}
+
+.input-icon-wrapper input,
+.input-icon-wrapper select {
+  width: 100%;
+  padding: 12px 16px 12px 42px;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  font-family: 'Asap', sans-serif;
+  font-size: 0.95rem;
+  color: #334155;
+  background-color: #f8fafc;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+/* Focus effects */
+.input-icon-wrapper input:focus,
+.input-icon-wrapper select:focus {
+  outline: none;
+  border-color: #006eb7;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 4px rgba(0, 110, 183, 0.15);
+}
+
+.input-icon-wrapper input:focus + i,
+.input-icon-wrapper select:focus + i {
+  color: #006eb7;
+}
+
+/* Modern Modal Animation */
+@keyframes slideUpScale {
+  from {
+    opacity: 0;
+    transform: scale(0.94) translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.modal-content-animated {
+  background: #ffffff;
+  padding: 2.5rem;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 550px;
+  font-family: 'Asap', sans-serif;
+  box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.22);
+  animation: slideUpScale 0.38s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Detail view styling card */
+.detail-card {
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #e2e8f0;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px dashed #e2e8f0;
+}
+
+.detail-row:last-child {
+  border-bottom: none;
+}
+
+.detail-label {
+  font-weight: 600;
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+.detail-value {
+  font-weight: 500;
+  color: #1e293b;
+  font-size: 0.95rem;
+}
+
+/* Color-coded badges for roles */
+.role-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border: 1px solid;
+  transition: all 0.2s ease;
+}
+
+.role-badge i {
+  font-size: 0.9rem;
+}
+
+/* Administrateur: Red/Crimson theme */
+.role-admin {
+  background-color: #fee2e2;
+  color: #b91c1c;
+  border-color: #fca5a5;
+}
+.role-admin:hover {
+  background-color: #fca5a5;
+  color: #991b1b;
+}
+
+/* Opérateur: Indigo/Blue theme */
+.role-operator {
+  background-color: #e0f2fe;
+  color: #0369a1;
+  border-color: #bae6fd;
+}
+.role-operator:hover {
+  background-color: #bae6fd;
+  color: #075985;
+}
+
+/* Consultant: Purple/Amethyst theme */
+.role-consultant {
+  background-color: #f3e8ff;
+  color: #6b21a8;
+  border-color: #e9d5ff;
+}
+.role-consultant:hover {
+  background-color: #e9d5ff;
+  color: #581c87;
+}
+
+/* Adhérent (Client): Green/Emerald theme */
+.role-client {
+  background-color: #dcfce7;
+  color: #15803d;
+  border-color: #bbf7d0;
+}
+.role-client:hover {
+  background-color: #bbf7d0;
+  color: #166534;
+}
+

@@ -1,0 +1,333 @@
+/* Sidebar.css */
+.sidebar {
+  width: 220px;
+  background-color: #ffffff;
+  border-right: 1px solid #edf2f7;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  box-shadow: 4px 0 25px rgba(0, 0, 0, 0.02);
+  box-sizing: border-box;
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.sidebar-header {
+  padding: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #f1f5f9;
+  min-height: 80px;
+  box-sizing: border-box;
+}
+
+.sidebar-logo {
+  max-width: 140px;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.05));
+  transition: transform 0.3s ease;
+}
+
+.sidebar-logo:hover {
+  transform: scale(1.03);
+}
+
+.sidebar-nav {
+  padding: 1.25rem 0;
+  overflow-y: auto;
+  flex: 1;
+}
+
+/* Custom Scrollbar for Sidebar */
+.sidebar-nav::-webkit-scrollbar {
+  width: 4px;
+}
+.sidebar-nav::-webkit-scrollbar-track {
+  background: transparent;
+}
+.sidebar-nav::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 2px;
+}
+
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-group {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  color: #000000;
+  font-weight: 700;
+  letter-spacing: 0.75px;
+  padding: 1.25rem 1.25rem 0.5rem;
+  margin-top: 0.25rem;
+  opacity: 0.85;
+}
+
+/* Rounded Pill Button design for Menu Items */
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 0.7rem 1rem;
+  color: #000000;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.88rem;
+  border-radius: 12px;
+  margin: 0.2rem 0.75rem;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-sizing: border-box;
+}
+
+.icon {
+  margin-right: 0.75rem;
+  font-size: 1.1rem;
+  width: 20px;
+  text-align: center;
+  color: #000000;
+  transition: color 0.25s ease, transform 0.25s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon i {
+  display: block;
+}
+
+.menu-item:hover {
+  background-color: #f1f5f9;
+  color: #006eb7;
+}
+
+.menu-item:hover .icon {
+  color: #006eb7;
+  transform: scale(1.08);
+}
+
+.menu-item.active {
+  background-color: #006eb7;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 110, 183, 0.2);
+  font-weight: 700;
+}
+
+.menu-item.active .icon {
+  color: #ffffff;
+}
+
+.has-submenu {
+  display: flex;
+  flex-direction: column;
+}
+
+.submenu-toggle {
+  justify-content: space-between;
+  cursor: pointer;
+  width: calc(100% - 1.5rem);
+}
+
+.item-left {
+  display: flex;
+  align-items: center;
+}
+
+.arrow {
+  font-size: 0.65rem;
+  color: #000000;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.has-submenu.expanded .arrow {
+  transform: rotate(90deg);
+}
+
+.submenu {
+  list-style: none;
+  padding: 0.2rem 0;
+  margin: 0 0.75rem;
+  background-color: #f8fafc;
+  border-radius: 12px;
+  border: 1px solid #f1f5f9;
+}
+
+.submenu li a {
+  display: flex;
+  align-items: center;
+  padding: 0.55rem 1rem 0.55rem 1.75rem;
+  color: #000000;
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 600;
+  border-radius: 8px;
+  margin: 0.15rem 0.4rem;
+  transition: all 0.2s ease;
+}
+
+.submenu-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: #000000;
+  margin-right: 0.65rem;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.submenu li a:hover {
+  color: #006eb7;
+  background-color: #f1f5f9;
+}
+
+.submenu li a:hover .submenu-dot {
+  background-color: #006eb7;
+  transform: scale(1.2);
+}
+
+.submenu li a.active {
+  color: #006eb7;
+  background-color: rgba(0, 110, 183, 0.06);
+  font-weight: 700;
+}
+
+.submenu li a.active .submenu-dot {
+  background-color: #006eb7;
+}
+
+/* Logout Button */
+.logout-item {
+  margin-top: auto;
+  border-top: 1px solid #f1f5f9;
+  padding: 1rem 0;
+  box-sizing: border-box;
+}
+
+.logout-item button {
+  width: calc(100% - 1.5rem);
+  display: flex;
+  align-items: center;
+  padding: 0.7rem 1rem;
+  background: none;
+  border: none;
+  color: #ef4444;
+  cursor: pointer;
+  font-size: 0.88rem;
+  font-weight: 600;
+  border-radius: 12px;
+  margin: 0 0.75rem;
+  transition: all 0.25s ease;
+}
+
+.logout-item button .icon {
+  color: inherit;
+}
+
+.logout-item button:hover {
+  background-color: #fee2e2;
+  color: #b91c1c;
+}
+
+.logout-item button:hover .icon {
+  color: #b91c1c;
+}
+
+/* ==========================================
+   DARK THEME OVERRIDES
+   ========================================== */
+html[data-theme='dark'] .sidebar {
+  background-color: #1e293b;
+  border-right: 1px solid #334155;
+  box-shadow: 4px 0 25px rgba(0, 0, 0, 0.2);
+}
+
+html[data-theme='dark'] .sidebar-header {
+  border-bottom: 1px solid #334155;
+}
+
+html[data-theme='dark'] .menu-group {
+  color: #64748b;
+}
+
+html[data-theme='dark'] .menu-item {
+  color: #94a3b8;
+}
+
+html[data-theme='dark'] .icon {
+  color: #94a3b8;
+}
+
+html[data-theme='dark'] .arrow {
+  color: #94a3b8;
+}
+
+html[data-theme='dark'] .menu-item:hover {
+  background-color: #334155;
+  color: #38bdf8;
+}
+
+html[data-theme='dark'] .menu-item:hover .icon {
+  color: #38bdf8;
+}
+
+html[data-theme='dark'] .menu-item.active {
+  background-color: #38bdf8;
+  color: #0f172a;
+  box-shadow: 0 4px 12px rgba(56, 189, 248, 0.25);
+}
+
+html[data-theme='dark'] .menu-item.active .icon {
+  color: #0f172a;
+}
+
+html[data-theme='dark'] .submenu {
+  background-color: #0f172a;
+  border: 1px solid #334155;
+}
+
+html[data-theme='dark'] .submenu li a {
+  color: #94a3b8;
+}
+
+html[data-theme='dark'] .submenu-dot {
+  background-color: #475569;
+}
+
+html[data-theme='dark'] .submenu li a:hover {
+  color: #38bdf8;
+  background-color: #334155;
+}
+
+html[data-theme='dark'] .submenu li a:hover .submenu-dot {
+  background-color: #38bdf8;
+}
+
+html[data-theme='dark'] .submenu li a.active {
+  color: #38bdf8;
+  background-color: rgba(56, 189, 248, 0.08);
+}
+
+html[data-theme='dark'] .submenu li a.active .submenu-dot {
+  background-color: #38bdf8;
+}
+
+html[data-theme='dark'] .logout-item {
+  border-top: 1px solid #334155;
+}
+
+html[data-theme='dark'] .logout-item button:hover {
+  background-color: rgba(239, 68, 68, 0.15);
+  color: #f87171;
+}
+
+html[data-theme='dark'] .logout-item button:hover .icon {
+  color: #f87171;
+}

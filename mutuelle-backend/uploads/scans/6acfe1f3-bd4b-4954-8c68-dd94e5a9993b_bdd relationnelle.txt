@@ -1,0 +1,79 @@
+Bases de données relationnelles
+
+approche et méthodologie 
+1) creation dictionnaire 
+...
+----------------------------------------------------------------------------------------------------------
+1ere forme normale: les tables doivent avoir clé primaire+ toutes les attributs sont atomique(une valeur=non répétitifs)
+2eme forme normale:il doit avoir la 1ere forme normale 		
+		dépendance entre les attribus :chaque attibutss ne doit dendre que de cle primaire
+3eme forme normale:il doit avoir la 2eme forme normale
+		
+		
+----------------------------------------------------------------------------------------------------------
+inconvénient de bdd relationnelle:
+	on ne peut pas enregistrer les données complexes+ les audios + les photos + les videos + matrices 
+	il ne support pas l'encapsulation  
+----------------------------------------------------------------------------------------------------------
+les points forts de modele objet : 
+		l'identité de objet
+		encapsultaion (concept regroupmeent concept comportementale et concept... dans une classe)+ héritage+support d'objets complexe
+----------------------------------------------------------------------------------------------------------
+les points forts de modele relationnels
+	concepts(tables,relations,champs....)
+	SQL
+----------------------------------------------------------------------------------------------------------
+la difference entre l'objet et entité et classe 
+entité:
+-----------------------------------------------------------------------------------------------------------
+creation de table relationnelle avec des objets 
+CREATE TYPE nom_type AS TABLE TYPE 
+exple :create type adresse as table of object adresse;
+
+le point fort de bdd objet : creation de objets abstraits
+----------------------------------------------------------------------------------------------------------
+il ya des tables classiques et des tables objets 
+-----------------------------------------------------------------------------------------------------------------
+modele objet:modéliser directement les entites de monde réel
+pourquoi integrer l'objet au relationnel car il supporte les données complexes et lourds et typage (types personnalis&s)
+
+2manieres pour creer un objet 
+		sous forme d'un tableau a taille a dimensions limitée 'varray';
+			syntaxe:create type NOM_TYPE as varray(3) of TYPE D_ELEMENT 
+			EXPLE:create type TADRESSE as varray(3) of VARCHAR
+
+ 			illimite(variables)'table';
+			suntaxe: create type NOM_TYPE as table of TYPE_ELEMNT
+			EXPLE:create type TADRESSE as table of VARCHAR;
+----------------------------------------------------------------------------------------------------------
+syntaxe qui permet de créer un nv objet
+	CREATE TYPE nom_type AS OBJECT(attribut1 type 1, attribut2 type 2..........);
+	ex: CREATE TYPE tvoiture  AS OBJECT (matricule varchar,marque varchar....);on peut integrer les containtes (clé primaire....)
+----------------------------------------------------------------------------------------------------------
+POUR integrer dasn une table un array fhmti dakche bach kandiro hadche masi awel hajaa aykhsssna ncreer type 
+exemple: endna 2 champs(adresse, voiture)
+bghina ikono ARRAY
+	create type t_adresse as table of varchar varray(3);
+	Create type t_voiture of object 
+apres on cree table etudiant 
+	CREATE TABLE etudiant(code_massar varchar, nom varchar, adresse t_adresse, voiture t_voiture);
+db insertion 
+	insert into etudiant values('111','tata','titi',t_adress(1,'bdbh','hdjd'), voiture ......)
+
+
+creer table personne , adresse
+SQL> create type t_adresse as object(no int,rue varchar(20),ville varchar(20), quartier varchar(20));/
+create type t_personne as object(code int,nom varchar, prenom varchar, age int, sexe varchar,adresse t_adresse);/.
+n,n,
+---------------------------------------------------------------------------------------------------------------------
+			EXERCICE TABLE PERSONNE 
+ETAPE1:
+create type t_prenom as Object (prenom varchar(20));
+ETAPE2:
+create type Prenom as varray(3) of t_prenom;
+ETAPE3:
+create type t_voiture as object(modele varchar(20),annee date,no int);
+ETAPE4:
+create type voiture as table of t_voiture ;
+ETAPE5:
+create table personne (nom varchar(20),prenoms prenom,date_naissance date, voitures voiture);

@@ -1,0 +1,125 @@
+{
+  "name": "Chatbot Stable Sans Erreur",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "chat",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "1",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        100,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://localhost:8081/chatbot/query",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"question\": \"{{$json.body.question}}\"\n}"
+      },
+      "id": "2",
+      "name": "Query Spring Boot",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        300,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ 'Tu es l assistant poli de la Mutuelle. Réponds à la question de l utilisateur de manière très courtoise.\\n\\nQuestion de l utilisateur : ' + $node['Webhook'].json.body.question + '\\n\\nInformations provenant de la base de données : ' + $json.data + '\\n\\nSi les informations disent qu aucun agent n a été trouvé ou qu aucune information n est pertinente, dis-le gentiment à l utilisateur. Sinon, utilise les informations pour lui répondre.' }}"
+      },
+      "id": "3",
+      "name": "Basic LLM Chain",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1,
+      "position": [
+        500,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-1.5-flash"
+      },
+      "id": "4",
+      "name": "Google Gemini Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        500,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { \"response\": $json.text } }}"
+      },
+      "id": "5",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Query Spring Boot",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Query Spring Boot": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}
